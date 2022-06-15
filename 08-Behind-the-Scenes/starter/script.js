@@ -100,13 +100,79 @@ matilda.calcAge(); //this refers to matilda object
 const f = jonas.calcAge;
 f(); //this undefined*/
 
+/*var firstName = 'Matilda';
+
 const jonas = {
   firstName: 'Jonas',
   year: 1991,
   calcAge: function () {
     console.log(this);
     console.log(2037 - this.year);
+
+    //Solution 1
+    //const self = this;
+    //const isMillenial = function () {
+      //console.log(self.year >= 1981 && self.year <= 1996); // this undefined
+    //};
+
+    //Solution 2
+    const isMillenial = () => {
+      console.log(this.year >= 1981 && this.year <= 1996); // this undefined
+    };
+
+    isMillenial();
   },
-  greet: () => console.log(`Hey ${this.firstName}`), // this -> undefined, bo arrow function
+  greet: () => console.log(`Hey ${this.firstName}`), // this -> undefined, bo arrow function, this wskazuje na window
 };
 jonas.greet();
+jonas.calcAge();
+
+//arguments keyword
+const addExpr = function (a, b) {
+  return a + b;
+};
+addExpr(2, 5);
+addExpr(2, 5, 8, 12); //ok
+var addArrow = (a, b) => a + b;
+addArrow(2, 5, 8); //argument not defined
+*/
+
+/*let age = 30;
+let oldAge = age; //copy undeep
+age = 31;
+console.log(oldAge);
+
+const me = {
+  name: 'Jonas',
+  age: 30,
+};
+const friend = me; //copy deep referential
+friend.age = 27;
+console.log('Freind: ', friend);
+console.log('Me: ', me);*/
+
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+
+const jessicaCopy = Object.assign({}, jessica2); //shallow copy, undeep
+jessicaCopy.lastName = 'Davis';
+
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
